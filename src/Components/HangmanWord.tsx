@@ -1,13 +1,17 @@
 import React from 'react'
 
-const HangmanWord = () => {
-    const word = 'test';
-    const guessedLetters = ['t', 'e', 'g'];
+interface IHangmanWord {
+    guessedLetters: string[];
+    wordToGuess: string;
+}
+
+const HangmanWord = ({ guessedLetters, wordToGuess }: IHangmanWord) => {
+
   return (
     <div style={{ display: 'flex', gap: '.25em', fontSize: '6rem', fontWeight: 'bold', 
         textTransform: 'uppercase', fontFamily: 'monospace'
     }}>
-      { word.split("").map((letter, ind) => (
+      { wordToGuess.split("").map((letter, ind) => (
             <span key={ ind } style={{
                 borderBottom: '.1em solid black'
             }}>

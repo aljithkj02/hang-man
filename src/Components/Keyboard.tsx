@@ -5,18 +5,19 @@ interface IKeyboard {
   activeLetters: string[];
   inActiveLetters: string[];
   addGuessedLetter: (letter: string) => void;
+  disabled: boolean
 }
 
-const Keyboard = ({ activeLetters, inActiveLetters, addGuessedLetter}: IKeyboard ) => {
+const Keyboard = ({ activeLetters, inActiveLetters, addGuessedLetter, disabled=false}: IKeyboard ) => {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))', gap: '.5rem'}}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(70px, 1fr))', gap: '.5rem'}}>
         {KEYS.map((key, ind) => {
             const isActive = activeLetters.includes(key);
             const isInActive = inActiveLetters.includes(key); 
             return (
                 <button  className={`keyboardBtn ${isActive? 'active' : ''}
                   ${isInActive? 'inactive' : ''} `} 
-                  key={ key } disabled={isInActive || isActive}
+                  key={ key } disabled={isInActive || isActive || disabled}
                   onClick={() => addGuessedLetter(key)}
                 >
                     {key}
